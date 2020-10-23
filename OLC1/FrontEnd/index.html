@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+        <script type="text/javascript" src="./js/index.js"></script>
+        <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+
+        <script src="./codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="../codemirror//lib//codemirror.css">
+        <link rel="stylesheet" href="../codemirror//theme//darcula.css">
+        <script src="./codemirror/mode/clike/clike.js"></script>
+        <title>Ejemplo3</title>
+    </head>
+    <body>
+        <div class="contenedor">
+            
+            <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btnp">
+           
+        <div></br></div>
+
+            <div>   
+                <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btnp">Guardar</button>
+                <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
+                <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
+                <button onclick="Conn()" title="QuitarPestana" id="btn5" class="btnp">Analizar</button>
+                <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Reporte_Errores</button>
+                <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn7" class="btnp">Reporte_AST</button>
+                <button onclick="Reporte_unos()" title="QuitarPestana" id="btn8" class="btnp">Reporte_Clases</button>
+                <button onclick="Reporte_dos()" title="QuitarPestana" id="btn9" class="btnp">Reporte_Variables</button>
+            </div>
+
+
+            <div id="pestanas">
+                <ul id=lista>
+                </ul>
+            </div>
+
+            <body>
+                <div id="contenidopestanas">
+                </div>
+            </body>
+        </div>
+    </body>
+</html>
