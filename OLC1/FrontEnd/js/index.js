@@ -217,7 +217,7 @@ function Conn(){
         if (status.toString() == "success") {
 
             alert("El resultado es: "+ data.Rerror);
-
+               
 
                 Reporte_ASTs = data.arbol;
 
