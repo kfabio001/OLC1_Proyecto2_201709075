@@ -78,6 +78,7 @@ function index(pestanias, pestania) {
 
 /*---------------------------------------Funcion Agregar Pestania----------------------------------------*/
 function agregar() {
+ 
     var x=get_cont();
     var lu=document.getElementById("lista");
     var li=document.createElement("li");
@@ -114,6 +115,14 @@ function agregar() {
         tact.value=editor.getValue();
     });
 }
+function consola(){
+    var x = document.createElement("TEXTAREA");
+    var t = document.createTextNode("Aklhvb");
+    
+    x.appendChild(t);
+    document.body.appendChild(x);
+    }
+
 
 function quitar(){
     try{
@@ -163,9 +172,9 @@ function AbrirArchivo(files){
 }
 
 function DescargarArchivo(){
-    var ta=document.getElementById(get_vent());
-    var contenido=ta.value;//texto de vent actual
-
+    //var ta=document.getElementById("cons");
+    //var contenido=ta.value;//texto de vent actual
+    var contenido=Reporte_Clases;
     //formato para guardar el archivo
     var hoy=new Date();
     var dd=hoy.getDate();
@@ -173,9 +182,9 @@ function DescargarArchivo(){
     var yyyy=hoy.getFullYear();
     var HH=hoy.getHours();
     var MM=hoy.getMinutes();
-    var formato=get_vent().replace("textarea","")+"_"+dd+"_"+mm+"_"+yyyy+"_"+HH+"_"+MM;
+    var formato="doc"+dd+"_"+mm+"_"+yyyy+"_"+HH+"_"+MM;
 
-    var nombre="Archivo"+formato+".coline";//nombre del archivo
+    var nombre="Archivo"+formato+".jss";//nombre del archivo
     var file=new Blob([contenido], {type: 'text/plain'});
 
     if(window.navigator.msSaveOrOpenBlob){
@@ -204,20 +213,23 @@ var Reporte_Metodos="";
 
 var contador_manda="uno";
 
+var javaConsola ="";
+
 function Conn(){
 
     
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
     var url = "http://localhost:9000/Analizar/";
-
+    var url2 = "http://localhost:9000/consol/";
+    
 
     $.post(url,{text1:contenido, text2:contador_manda}, function(data,status){
         
         if (status.toString() == "success") {
 
             alert("El resultado es: "+ data.Rerror);
-               
+             // javaConsola= data.con;
 
                 Reporte_ASTs = data.arbol;
 
@@ -227,6 +239,7 @@ function Conn(){
                 
                 Reporte_Metodos = data.Reporte_dos.toString();
 
+                Graphviz=data.ast.toString();
 
         }else{
             alert("Error estado de conexion: "+ status);
@@ -276,19 +289,12 @@ function Pagina_Reporte_AST(){
     textopagina += "<div class=\"container\">";
     textopagina += "<h1>Display</h1>";
     textopagina += "<div id=\"jstree-tree\"></div>";
-    textopagina += "<script>";
-    textopagina += "var jsonData = ["+Reporte_ASTs+"];";
-    textopagina += "$('#jstree-tree')";
-    textopagina += " .on('changed.jstree', function (e, data) {";
-    textopagina +=" var objNode = data.instance.get_node(data.selected);";
-    textopagina +="$('#jstree-result').html('Selected: <br/><strong>' + objNode.id+'-'+objNode.text+'</strong>');";
-    textopagina +="})";
-    textopagina +=".jstree({";
-    textopagina +="core: {";
-    textopagina +="data: jsonData";
-    textopagina +="}";
-    textopagina +="});";
-    textopagina += "</script>";
+    textopagina += "<script src=\"//d3js.org/d3.v5.min.js\"></script>";
+    textopagina += "<script src=\"https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js\"></script>";
+    textopagina += "<script src=\"https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js\"></script>";
+    textopagina +=" <div id=\"graph\" style=\"text-align: center;\"></div>";
+    textopagina +="<script> d3.select(\"#graph\").graphviz() .renderDot("+Graphviz+"); </script>";
+    
     textopagina += "</div>";
     textopagina += "</body>";
     textopagina += "</html>";

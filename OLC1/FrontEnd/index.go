@@ -72,6 +72,7 @@ func main() {
 	http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("js/"))))
 
 	http.HandleFunc("/", index)
+	//http.HandleFunc("/consol/", index)
 	http.HandleFunc("/Reporte_Errores", Reporte_Errores)
 	http.HandleFunc("/Reporte_AST", Reporte_AST)
 	http.HandleFunc("/Reporte_Clases", Reporte_clas)

@@ -4,11 +4,15 @@ export class Nodo{
     public tipo:string;
     public hijos:Array<Nodo>
     tipodato:string="";
+    public fila:number;
+    public columna:number;
 
-    constructor(tipoC:string,des:string){//,idC:number
+    constructor(tipoC:string,des:string,fil:number,colm:number){//,idC:number
         this.hijos = [];
         this.tipo = tipoC;
         this.descripcion=des;
+        this.fila=fil;
+        this.columna=colm;
         //this.id = idC;
     }
 

@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="../codemirror//lib//codemirror.css">
         <link rel="stylesheet" href="../codemirror//theme//darcula.css">
         <script src="./codemirror/mode/clike/clike.js"></script>
-        <title>Ejemplo3</title>
+        <title>Proyecto 1</title>
     </head>
     <body>
         <div class="contenedor">
@@ -20,14 +20,15 @@
         <div></br></div>
 
             <div>   
-                <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btnp">Guardar</button>
+                <button onclick="cargar()" id="guardar" title="Guardar" class="btnp">Guardar</button>
                 <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
                 <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
-                <button onclick="Conn()" title="QuitarPestana" id="btn5" class="btnp">Analizar</button>
+                <button onclick="Conn(), mostrar(),mostrarPyton()" title="QuitarPestana" id="btn5" class="btnp">Analizar</button>
                 <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Reporte_Errores</button>
                 <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn7" class="btnp">Reporte_AST</button>
                 <button onclick="Reporte_unos()" title="QuitarPestana" id="btn8" class="btnp">Reporte_Clases</button>
                 <button onclick="Reporte_dos()" title="QuitarPestana" id="btn9" class="btnp">Reporte_Variables</button>
+                <button onclick="eraseText()" title="QuitarPestana" id="btn10" class="btnp">Consola</button>
             </div>
 
 
@@ -39,17 +40,98 @@
             <body>
                 <div id="contenidopestanas">
                 </div>
+                <div class="consola">
+                    
+                  
+                    <script>
+                        var x = document.createElement("TEXTAREA");
+                          x.setAttribute("id", "cons");
+                          x.setAttribute("rows","20" );
+                          x.setAttribute("cols","70" );
+                          var t = document.createTextNode("");
+                          
+                          x.appendChild(t);
+                          
+                          document.body.appendChild(x);
+                          x.setAttribute( 'readonly', true);
+                          
+                      
+                          
+                          function eraseText() {
+                        
+                        var c =document.getElementById("cons").value="H";
+                        var c =document.getElementById("consPython").value="D";
+
+                        }
+                        
+                        function mostrar(){
+                            
+                          
+                            var c =document.getElementById("cons").value=Reporte_Clases;
+                          
+                        }
+                       // eraseText();
+                      // mostrar();
+                        </script>
+                </div>
+                <div class="consolaP">
+                    <h2>Consola Python</h2> <h2>Consola JavaScript</h2>
+                    
+                    <script>
+                        
+                          var y = document.createElement("TEXTAREA");
+                          y.setAttribute("id", "consPython");
+                          y.setAttribute("rows","20" );
+                          y.setAttribute("cols","70" );
+                          var t = document.createTextNode("");
+                          y.appendChild(t);
+                          document.body.appendChild(y);
+                          x.setAttribute( 'readonly', true);
+                          
+                        
+                        function mostrarPyton(){
+                            var c =document.getElementById("consPython").value=Reporte_Clases;
+                        }
+                       
+                     
+                        </script>
+                </div>
+            <script>
+                function cargar(){
+                var contenido=Reporte_Clases;
+                //formato para guardar el archivo
+                var hoy=new Date();
+                var dd=hoy.getDate();
+                var mm=hoy.getMonth()+1;
+                var yyyy=hoy.getFullYear();
+                var HH=hoy.getHours();
+                var MM=hoy.getMinutes();
+                var formato="doc"+dd+"_"+mm+"_"+yyyy+"_"+HH+"_"+MM;
+            
+                var nombre="Archivo"+formato+".js";//nombre del archivo
+                var file=new Blob([contenido], {type: 'text/plain'});
+            
+                if(window.navigator.msSaveOrOpenBlob){
+                    window.navigator.msSaveOrOpenBlob(file, nombre);
+                }else{
+                    var a=document.createElement("a"),url=URL.createObjectURL(file);
+                    a.href=url;
+                    a.download=nombre;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(function(){
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);  
+                    },0); 
+                }
+            }
+</script>
             </body>
-            <aside class="consolas">
-                <div class="consola">
-                    <h2>Consola Python</h2>
-                    <textarea id="consolaPython"></textarea>
+            <body>
+                <div id="contenidoconsolas">
                 </div>
-                <div class="consola">
-                    <h2>Consola JavaScript</h2>
-                    <textarea id="consolaPython"></textarea>
-                </div>
-            </aside>
+            </body>
+                
         </div>
     </body>
 </html>
