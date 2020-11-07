@@ -1,5 +1,5 @@
 body {
-    background: #003333;
+    background: #010741;
 }
 
 .ta {
@@ -8,7 +8,7 @@ body {
 
 .btnp {
     border: none;
-    background: #70DB93;
+    background: #049c37;
     color: #f2f2f2;
     padding: 5px;
     font-size: 14px;
@@ -110,3 +110,8 @@ body {
     border: 2px solid rgb(0, 112, 163);
     width: 1025px;
 }
+
+
+.textarea {
+    resize: none;
+  }

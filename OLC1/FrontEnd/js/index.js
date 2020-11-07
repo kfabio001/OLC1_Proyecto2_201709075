@@ -170,6 +170,37 @@ function AbrirArchivo(files){
     var file_input=document.getElementById("fileInput");
     document.getElementById('fileInput').value="";
 }
+function GuardarArchivo(){
+    var ta=document.getElementById(get_vent());
+    var contenido=ta.value;//texto de vent actual
+
+    //formato para guardar el archivo
+    var hoy=new Date();
+    var dd=hoy.getDate();
+    var mm=hoy.getMonth()+1;
+    var yyyy=hoy.getFullYear();
+    var HH=hoy.getHours();
+    var MM=hoy.getMinutes();
+    var formato=get_vent().replace("textarea","")+"_"+dd+"_"+mm+"_"+yyyy+"_"+HH+"_"+MM;
+
+    var nombre=""+formato+".java";//nombre del archivo
+    var file=new Blob([contenido], {type: 'text/plain'});
+
+    if(window.navigator.msSaveOrOpenBlob){
+        window.navigator.msSaveOrOpenBlob(file, nombre);
+    }else{
+        var a=document.createElement("a"),url=URL.createObjectURL(file);
+        a.href=url;
+        a.download=nombre;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function(){
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        },0); 
+    }
+  
+}
 
 function DescargarArchivo(){
     //var ta=document.getElementById("cons");
@@ -204,7 +235,8 @@ function DescargarArchivo(){
 
 /*------------------------- Prueba de conexion -----------------------------------------------------*/
 var Reporte_Error="";
-
+var Reporte_ErrorPython="";
+var Reporte_Tokens_PY="";
 var Reporte_ASTs="";
 
 var Reporte_Clases="";
@@ -221,7 +253,7 @@ function Conn(){
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
     var url = "http://localhost:9000/Analizar/";
-    var url2 = "http://localhost:9000/consol/";
+    var url2 = "http://localhost:9100/consol/";
     
 
     $.post(url,{text1:contenido, text2:contador_manda}, function(data,status){
@@ -241,11 +273,20 @@ function Conn(){
 
                 Graphviz=data.ast.toString();
 
+                EnviarErrores=data.MostrarError.toString();
+
+                ErroresPython=data.MostrarEPython.toString();
+
+                Reporte_ErrorPython =data.RerrorP.toString();
+
+                Reporte_Tokens_PY =data.Reporte_tres.toString();
+
         }else{
             alert("Error estado de conexion: "+ status);
         }
     
     },"json");
+   
 
     if(contador_manda.toString() == "dos"){
         
@@ -264,6 +305,13 @@ function Reporte_Errores(){
 
     var nueva_ventana = window.open('../Reporte_Errores','_blank');
     nueva_ventana.document.write(Reporte_Error);
+    //alert(Reporte_Error)
+
+}
+function Reporte_ErroresP(){
+
+    var nueva_ventana = window.open('../Reporte_Errores_Python','_blank');
+    nueva_ventana.document.write(Reporte_ErrorPython);
     //alert(Reporte_Error)
 
 }
@@ -321,3 +369,10 @@ function Reporte_dos(){
 
 
 }
+//function Reporte_tres(){
+
+   // var nueva_ventana = window.open('../Reporte_FuncionesPY','_blank');
+  //  nueva_ventana.document.write(Reporte_Tokens_PY);
+
+
+//}

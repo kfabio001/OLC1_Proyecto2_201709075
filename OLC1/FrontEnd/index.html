@@ -1,137 +1,224 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="../css/index.css"/>
-        <script type="text/javascript" src="./js/index.js"></script>
-        <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 
-        <script src="./codemirror/lib/codemirror.js"></script>
-        <link rel="stylesheet" href="../codemirror//lib//codemirror.css">
-        <link rel="stylesheet" href="../codemirror//theme//darcula.css">
-        <script src="./codemirror/mode/clike/clike.js"></script>
-        <title>Proyecto 1</title>
-    </head>
-    <body>
-        <div class="contenedor">
-            
-            <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btnp">
-           
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <script type="text/javascript" src="./js/index.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+
+    <script src="./codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="../codemirror//lib//codemirror.css">
+    <link rel="stylesheet" href="../codemirror//theme//darcula.css">
+    <script src="./codemirror/mode/clike/clike.js"></script>
+    <style>
+        h2 {
+            color: #fff;
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 48px;
+            margin: 0 0 24px;
+            padding: 0 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+
+        textarea {
+            resize: none;
+            background-color: #000;
+            border: 14px solid rgb(38, 92, 76);
+            color: #ffffff;
+            padding: 10px;
+            font-family: courier new;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+
+        }
+        body {
+    background: #464753;
+}
+.contenedor{
+    width: 1180px;
+    margin: auto;
+    background:#5108c7a8;
+    color: rgb(0, 112, 163);
+    padding: 20px 15px 50px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+       
+
+        #titulos {
+    display: inline-block;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}
+#titulosJ {
+    display: inline-block;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}
+.btnp {
+    border: none;
+    background: #042694;
+    color: #f2f2f2;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 2px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+}
+    </style>
+    <title>Proyecto 1</title>
+</head>
+
+<body>
+    <div>
+        <h2>Proyecto 2 Fabio Andre Sanchez Chavez 201709075</h2>
+    </div>
+    <div class="contenedor">
+
+        <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btnp">
+
         <div></br></div>
 
-            <div>   
-                <button onclick="cargar()" id="guardar" title="Guardar" class="btnp">Guardar</button>
-                <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
-                <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
-                <button onclick="Conn(), mostrar(),mostrarPyton()" title="QuitarPestana" id="btn5" class="btnp">Analizar</button>
-                <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Reporte_Errores</button>
-                <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn7" class="btnp">Reporte_AST</button>
-                <button onclick="Reporte_unos()" title="QuitarPestana" id="btn8" class="btnp">Reporte_Clases</button>
-                <button onclick="Reporte_dos()" title="QuitarPestana" id="btn9" class="btnp">Reporte_Variables</button>
-                <button onclick="eraseText()" title="QuitarPestana" id="btn10" class="btnp">Consola</button>
+        <div> 
+            <button onclick="GuardarArchivo();" id="guardarEditor" title="Guardar" class="btnp">Guardar</button>
+            <button onclick="cargar()" id="guardar" title="GuardarJ" class="btnp">Descargar JavaScript</button>
+            <button onclick="cargar()" id="guardarPython" title="Guardar" class="btnp">Descargar Python</button>
+            <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
+            <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
+            <button onclick="Conn(), mostrar(),mostrarPyton()" title="QuitarPestana" id="btn5" class="btnp">Analizar</button>
+            <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Errores JS</button>
+            <button onclick="Reporte_ErroresP()" title="QuitarPestana" id="btn8" class="btnp">Errores PY</button>
+            <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn7" class="btnp">AST</button>
+            <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn11" class="btnp">AST Py</button>
+            <button onclick="Reporte_dos()" title="QuitarPestana" id="btn9" class="btnp">Tokens JS</button>
+            <button onclick="Reporte_tres();" title="QuitarPestana" id="btn13" class="btnp">Tokens PY</button>
+            <button onclick="eraseText()" title="QuitarPestana" id="btn10" class="btnp">Limpiar Consolas</button>
+        </div>
+
+ 
+        <div id="pestanas">
+            <ul id=lista>
+            </ul>
+        </div>
+
+        <body>
+            <div id="contenidopestanas">
             </div>
+            <div class="consola">
 
 
-            <div id="pestanas">
-                <ul id=lista>
-                </ul>
-            </div>
-            
-            <body>
-                <div id="contenidopestanas">
-                </div>
-                <div class="consola">
-                    
-                  
-                    <script>
-                        var x = document.createElement("TEXTAREA");
-                          x.setAttribute("id", "cons");
-                          x.setAttribute("rows","20" );
-                          x.setAttribute("cols","70" );
-                          var t = document.createTextNode("");
-                          
-                          x.appendChild(t);
-                          
-                          document.body.appendChild(x);
-                          x.setAttribute( 'readonly', true);
-                          
-                      
-                          
-                          function eraseText() {
-                        
-                        var c =document.getElementById("cons").value="H";
-                        var c =document.getElementById("consPython").value="D";
+                <script>
+                    var x = document.createElement("TEXTAREA");
+                    x.setAttribute("id", "cons");
+                    x.setAttribute("rows", "20");
+                    x.setAttribute("cols", "70");
+                    var t = document.createTextNode("");
 
-                        }
-                        
-                        function mostrar(){
-                            
-                          
-                            var c =document.getElementById("cons").value=Reporte_Clases;
-                          
-                        }
+                    x.appendChild(t);
+
+                    document.body.appendChild(x);
+                    x.setAttribute('readonly', true);
+
+
+
+                    function eraseText() {
+
+                        var c = document.getElementById("cons").value = "H";
+                        var c = document.getElementById("consPython").value = "D";
+
+                    }
+
+                    function mostrar() {
+
+
+                        var c = document.getElementById("cons").value = EnviarErrores;
+
+                    }
                        // eraseText();
                       // mostrar();
-                        </script>
-                </div>
-                <div class="consolaP">
-                    <h2>Consola Python</h2> <h2>Consola JavaScript</h2>
-                    
-                    <script>
-                        
-                          var y = document.createElement("TEXTAREA");
-                          y.setAttribute("id", "consPython");
-                          y.setAttribute("rows","20" );
-                          y.setAttribute("cols","70" );
-                          var t = document.createTextNode("");
-                          y.appendChild(t);
-                          document.body.appendChild(y);
-                          x.setAttribute( 'readonly', true);
-                          
-                        
-                        function mostrarPyton(){
-                            var c =document.getElementById("consPython").value=Reporte_Clases;
-                        }
-                       
-                     
-                        </script>
-                </div>
+                </script>
+            </div>
+            <div class="consolaP">
+                <div id="titulos">\\\\\\\\\\\\\\\\\\\\\\\\\\\ Consola JavaScript </div>
+                <div id="titulosJ">\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Consola Python \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ </div>
+
+
+                <script>
+
+                    var y = document.createElement("TEXTAREA");
+                    y.setAttribute("id", "consPython");
+                    y.setAttribute("rows", "20");
+                    y.setAttribute("cols", "70");
+
+                    var t = document.createTextNode("");
+                    y.appendChild(t);
+                    document.body.appendChild(y);
+                    x.setAttribute('readonly', true);
+
+
+                    function mostrarPyton() {
+                        var c = document.getElementById("consPython").value = ErroresPython;
+                    }
+
+
+                </script>
+            </div>
             <script>
-                function cargar(){
-                var contenido=Reporte_Clases;
-                //formato para guardar el archivo
-                var hoy=new Date();
-                var dd=hoy.getDate();
-                var mm=hoy.getMonth()+1;
-                var yyyy=hoy.getFullYear();
-                var HH=hoy.getHours();
-                var MM=hoy.getMinutes();
-                var formato="doc"+dd+"_"+mm+"_"+yyyy+"_"+HH+"_"+MM;
-            
-                var nombre="Archivo"+formato+".js";//nombre del archivo
-                var file=new Blob([contenido], {type: 'text/plain'});
-            
-                if(window.navigator.msSaveOrOpenBlob){
-                    window.navigator.msSaveOrOpenBlob(file, nombre);
-                }else{
-                    var a=document.createElement("a"),url=URL.createObjectURL(file);
-                    a.href=url;
-                    a.download=nombre;
-                    document.body.appendChild(a);
-                    a.click();
-                    setTimeout(function(){
-                        document.body.removeChild(a);
-                        window.URL.revokeObjectURL(url);  
-                    },0); 
+                function cargar() {
+                    var contenido = Reporte_Clases;
+                    //formato para guardar el archivo
+                    var hoy = new Date();
+                    var dd = hoy.getDate();
+                    var mm = hoy.getMonth() + 1;
+                    var yyyy = hoy.getFullYear();
+                    var HH = hoy.getHours();
+                    var MM = hoy.getMinutes();
+                    var formato = "doc" + dd + "_" + mm + "_" + yyyy + "_" + HH + "_" + MM;
+
+                    var nombre = "Archivo" + formato + ".js";//nombre del archivo
+                    var file = new Blob([contenido], { type: 'text/plain' });
+
+                    if (window.navigator.msSaveOrOpenBlob) {
+                        window.navigator.msSaveOrOpenBlob(file, nombre);
+                    } else {
+                        var a = document.createElement("a"), url = URL.createObjectURL(file);
+                        a.href = url;
+                        a.download = nombre;
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(function () {
+                            document.body.removeChild(a);
+                            window.URL.revokeObjectURL(url);
+                        }, 0);
+                    }
                 }
-            }
-</script>
-            </body>
-            <body>
-                <div id="contenidoconsolas">
-                </div>
-            </body>
-                
-        </div>
-    </body>
+                function Reporte_tres(){
+
+var nueva_ventana = window.open('../Reporte_FuncionesPY','_blank');
+nueva_ventana.document.write(Reporte_Tokens_PY);
+
+
+}
+            </script>
+        </body>
+
+        <body>
+            <div id="contenidoconsolas">
+            </div>
+        </body>
+
+    </div>
+</body>
+
 </html>

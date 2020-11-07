@@ -1,24 +1,21 @@
-import { NodoError } from './Nodo_Error';
+import { Tokenn } from './Tokenn';
 
-class Errores extends Array<NodoError>{
+class Tokens extends Array<Tokenn>{
 
     constructor(){
         super();
     }
 
-    public static add(err:NodoError){
+    public static add(err:Tokenn){
         this.prototype.push(err);
     }
 
     public static mostrar(){
-        var enviar="";
         for(var i=0; i<this.prototype.length;i++){
         
-      //  console.log(this.prototype[i].getdescripcion()+" Tipo: "+this.prototype[i].gettipo()+" Linea: "+this.prototype[i].getlinea()+" Columna: "+this.prototype[i].getcolumna());
-        enviar=enviar+this.prototype[i].getdescripcion()+" Tipo: "+this.prototype[i].gettipo()+" Linea: "+this.prototype[i].getlinea()+" Columna: "+this.prototype[i].getcolumna()+"\n";
+        console.log(this.prototype[i].getdescripcion()+" Tipo: "+this.prototype[i].gettipo()+" Linea: "+this.prototype[i].getlinea()+" Columna: "+this.prototype[i].getcolumna());
+        
         }
-        console.log(enviar);
-        return enviar; 
     }
 
     public static mostrar_Lista():String{
@@ -28,12 +25,12 @@ class Errores extends Array<NodoError>{
         texto+="<head>";
         texto+="<meta charset=\"UTF-8\">";
         texto+="<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
-        texto+="<title>Reporte Errores</title>";
+        texto+="<title>Reporte Token</title>";
         texto+="<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">";
         texto+="<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\" integrity=\"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6\" crossorigin=\"anonymous\"></script>";
         texto+="</head>";
         texto+="<body>";
-        texto+="<H1>Lista de Errores</H1>";
+        texto+="<H1>Lista de Token</H1>";
         texto+= "<table class=\"table\"><thead class=\"thead-dark\"> \n";
         texto+="<tr> \n";
         texto+= "<th scope=\"col\">#</th> \n";
@@ -84,4 +81,4 @@ class Errores extends Array<NodoError>{
 
 }
 
-export{Errores};
+export{Tokens};

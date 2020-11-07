@@ -1,0 +1,27 @@
+{
+  "name": "BackEnd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc ",
+    "watch": "tsc -w",
+    "dev": "nodemon build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "d3-graphviz": "^3.1.0",
+    "express": "^4.17.1",
+    "graphviz": "0.0.9",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/morgan": "^1.9.0",
+    "nodemon": "^2.0.3"
+  }
+}

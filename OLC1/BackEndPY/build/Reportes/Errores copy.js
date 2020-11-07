@@ -23,13 +23,9 @@ var Errores = /** @class */ (function (_super) {
         this.prototype.push(err);
     };
     Errores.mostrar = function () {
-        var enviar = "";
         for (var i = 0; i < this.prototype.length; i++) {
-            //  console.log(this.prototype[i].getdescripcion()+" Tipo: "+this.prototype[i].gettipo()+" Linea: "+this.prototype[i].getlinea()+" Columna: "+this.prototype[i].getcolumna());
-            enviar = enviar + this.prototype[i].getdescripcion() + " Tipo: " + this.prototype[i].gettipo() + " Linea: " + this.prototype[i].getlinea() + " Columna: " + this.prototype[i].getcolumna() + "\n";
+            console.log(this.prototype[i].getdescripcion() + " Tipo: " + this.prototype[i].gettipo() + " Linea: " + this.prototype[i].getlinea() + " Columna: " + this.prototype[i].getcolumna());
         }
-        console.log(enviar);
-        return enviar;
     };
     Errores.mostrar_Lista = function () {
         var texto = "";

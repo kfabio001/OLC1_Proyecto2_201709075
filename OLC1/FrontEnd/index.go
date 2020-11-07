@@ -30,6 +30,18 @@ func Reporte_Errores(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func Reporte_Errores_Python(w http.ResponseWriter, r *http.Request) {
+
+	template, err := template.ParseFiles("Reporte_Errores_Python.html")
+
+	if err != nil {
+		fmt.Fprintf(w, "Pagina no encontrada")
+	} else {
+		template.Execute(w, nil)
+	}
+
+}
+
 func Reporte_AST(w http.ResponseWriter, r *http.Request) {
 
 	template, err := template.ParseFiles("Reporte_AST.html")
@@ -63,6 +75,16 @@ func Reporte_funs(w http.ResponseWriter, r *http.Request) {
 	} else {
 		template.Execute(w, nil)
 	}
+}
+func Reporte_funspy(w http.ResponseWriter, r *http.Request) {
+
+	template, err := template.ParseFiles("Reporte_Funpy.html")
+
+	if err != nil {
+		fmt.Fprintf(w, "Pagina no encontrada")
+	} else {
+		template.Execute(w, nil)
+	}
 
 }
 
@@ -74,9 +96,11 @@ func main() {
 	http.HandleFunc("/", index)
 	//http.HandleFunc("/consol/", index)
 	http.HandleFunc("/Reporte_Errores", Reporte_Errores)
+	http.HandleFunc("/Reporte_Errores_Python", Reporte_Errores_Python)
 	http.HandleFunc("/Reporte_AST", Reporte_AST)
 	http.HandleFunc("/Reporte_Clases", Reporte_clas)
 	http.HandleFunc("/Reporte_Funciones", Reporte_funs)
+	http.HandleFunc("/Reporte_FuncionesPY", Reporte_funspy)
 
 	fmt.Printf("Servidor escuchando en: http://localhost:4000/")
 	http.ListenAndServe(":4000", nil)

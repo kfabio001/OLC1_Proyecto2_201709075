@@ -13,37 +13,33 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Errores = void 0;
-var Errores = /** @class */ (function (_super) {
-    __extends(Errores, _super);
-    function Errores() {
+exports.Tokens = void 0;
+var Tokens = /** @class */ (function (_super) {
+    __extends(Tokens, _super);
+    function Tokens() {
         return _super.call(this) || this;
     }
-    Errores.add = function (err) {
+    Tokens.add = function (err) {
         this.prototype.push(err);
     };
-    Errores.mostrar = function () {
-        var enviar = "";
+    Tokens.mostrar = function () {
         for (var i = 0; i < this.prototype.length; i++) {
-            //  console.log(this.prototype[i].getdescripcion()+" Tipo: "+this.prototype[i].gettipo()+" Linea: "+this.prototype[i].getlinea()+" Columna: "+this.prototype[i].getcolumna());
-            enviar = enviar + this.prototype[i].getdescripcion() + " Tipo: " + this.prototype[i].gettipo() + " Linea: " + this.prototype[i].getlinea() + " Columna: " + this.prototype[i].getcolumna() + "\n";
+            console.log(this.prototype[i].getdescripcion() + " Tipo: " + this.prototype[i].gettipo() + " Linea: " + this.prototype[i].getlinea() + " Columna: " + this.prototype[i].getcolumna());
         }
-        console.log(enviar);
-        return enviar;
     };
-    Errores.mostrar_Lista = function () {
+    Tokens.mostrar_Lista = function () {
         var texto = "";
         texto = "<!DOCTYPE html> ";
         texto += "<html lang=\"en\">";
         texto += "<head>";
         texto += "<meta charset=\"UTF-8\">";
         texto += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
-        texto += "<title>Reporte Errores</title>";
+        texto += "<title>Reporte Token</title>";
         texto += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">";
         texto += "<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\" integrity=\"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6\" crossorigin=\"anonymous\"></script>";
         texto += "</head>";
         texto += "<body>";
-        texto += "<H1>Lista de Errores</H1>";
+        texto += "<H1>Lista de Token</H1>";
         texto += "<table class=\"table\"><thead class=\"thead-dark\"> \n";
         texto += "<tr> \n";
         texto += "<th scope=\"col\">#</th> \n";
@@ -71,18 +67,18 @@ var Errores = /** @class */ (function (_super) {
         texto += "</html>";
         return texto;
     };
-    Errores.Vacio = function () {
+    Tokens.Vacio = function () {
         var vacio = false;
         while (this.prototype.length > 0) {
             return true;
         }
         return vacio;
     };
-    Errores.clear = function () {
+    Tokens.clear = function () {
         while (this.prototype.length > 0) {
             this.prototype.pop();
         }
     };
-    return Errores;
+    return Tokens;
 }(Array));
-exports.Errores = Errores;
+exports.Tokens = Tokens;

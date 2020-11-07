@@ -60,49 +60,35 @@ app.post('/consol/', function (req, res) {
 app.post('/Analizar/', function (req, res) {
     var entrada = req.body.text1;
     var resultado = prueba(entrada);
-    console.log(resultado);
+    // console.log(resultado);
     // consola="";
     // console.log(resultado);
     if (Errores_1.Errores.Vacio()) {
         consola = "";
-        recorrer_tree_uno(resultado);
+        // recorrer_tree_uno(resultado);
+        //pyton(entrada); 
         cadena = "";
-        graficar(resultado);
-        Tokens_1.Tokens.clear();
-        Tokenss(resultado);
+        //  graficar(resultado);
+        // Tokens.clear();
+        //Tokenss(resultado);
         var nada = "";
-        Errores_1.Errores.mostrar();
+        //Errores.mostrar();
         var tree1 = JSON.stringify(resultado, null, 2);
         tree1 = tree1.split('descripcion').join('text').split('lista_Nodo').join('children');
-        try {
-            // pyton(entrada); 
-            // console.log(Parser.mostrar_Tokens());
-        }
-        catch (error) {
-            console.log(error);
-        }
-        res.json({ arbol: tree1, MostrarError: Errores_1.Errores.mostrar(),
-            MostrarEPython: sintacticoPython_1.default.EnviarErrores(), Rerror: Errores_1.Errores.mostrar_Lista().toString(),
-            RerrorP: sintacticoPython_1.default.mostrar_Lista().toString(), Reporte_uno: consola,
-            Reporte_tres: sintacticoPython_1.default.mostrar_Tokens(),
-            Reporte_dos: Tokens_1.Tokens.mostrar_Lista().toString(), ast: contenido });
-        Errores_1.Errores.clear();
+        res.json({ arbol: tree1, MostrarError: Errores_1.Errores.mostrar(), MostrarEPython: sintacticoPython_1.default.EnviarErrores(),
+            Rerror: Errores_1.Errores.mostrar_Lista().toString(), RerrorP: sintacticoPython_1.default.mostrar_Lista().toString(),
+            Reporte_uno: consola, Reporte_dos: Tokens_1.Tokens.mostrar_Lista().toString(), ast: contenido });
+        //  Errores.clear();  
     }
     else {
         consola = "";
-        recorrer_tree_uno(resultado);
+        //  recorrer_tree_uno(resultado);
+        //pyton(entrada); 
         Errores_1.Errores.clear();
         cadena = "";
-        graficar(resultado);
-        Tokens_1.Tokens.clear();
-        Tokenss(resultado);
-        try {
-            // pyton(entrada); 
-            //console.log(Parser.mostrar_Tokens());
-        }
-        catch (error) {
-            console.log(error);
-        }
+        //graficar(resultado);
+        //Tokens.clear();
+        //Tokenss(resultado);
         if (req.body.text2.toString() == "uno") {
             Lista_clase_1 = [];
             Lista_clase_contadores_1 = [];
@@ -114,23 +100,11 @@ app.post('/Analizar/', function (req, res) {
             tree1 = tree1.split('descripcion').join('text').split('lista_Nodo').join('children');
             // console.log(tree1);
             //recorrer_tree_uno(resultado);
-            res.json({ arbol: tree1, MostrarError: Errores_1.Errores.mostrar(),
-                MostrarEPython: sintacticoPython_1.default.EnviarErrores(), Rerror: "nada",
-                RerrorP: sintacticoPython_1.default.mostrar_Lista().toString(),
-                Reporte_uno: consola,
-                Reporte_tres: sintacticoPython_1.default.mostrar_Tokens(),
+            res.json({ arbol: tree1, MostrarError: Errores_1.Errores.mostrar(), MostrarEPython: sintacticoPython_1.default.EnviarErrores(),
+                Rerror: "nada", RerrorP: sintacticoPython_1.default.mostrar_Lista().toString(), Reporte_uno: consola,
                 Reporte_dos: Tokens_1.Tokens.mostrar_Lista().toString(), ast: contenido });
         }
         else {
-            //  Lista_clase_2 =[];
-            //Lista_clase_contadores_2=[];
-            //contador2 = 0;
-            // console.log("dos");
-            //  r2 =resultado;
-            //Apartado para el AST
-            //  var tree2 = JSON.stringify(resultado,null,2);
-            //   tree2 = tree2.split('descripcion').join('text').split('lista_Nodo').join('children');
-            //  res.json({arbol: tree2, Rerror: "nada2", Reporte_uno: Reporte_clase, Reporte_dos: Reporte_funcion});
         }
     }
 });
@@ -538,8 +512,8 @@ function recorrer_tree_uno(temporal) {
     catch (error) {
     }
 }
-var server = app.listen(9000, function () {
-    console.log('Servidor escuchando en puerto 9000...');
+var server = app.listen(9100, function () {
+    console.log('Servidor Python escuchando en puerto 9100...');
 });
 function prueba(texto) {
     try {
